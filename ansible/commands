@@ -1,0 +1,104 @@
+##
+sudo apt-get update
+sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+sudo apt-get update
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+
+sudo usermod -aG docker $USER
+sudo apt-get update
+sudo apt-get install docker-compose-plugin
+docker compose version
+
+## In Project Dire - WSL 
+docker compose up --build -d
+
+Perfect debugging moment, Ahmed 👨‍💻 — you’ve moved past the `docker-compose` vs `docker compose` issue, but now you’re hitting the **classic “Cannot connect to the Docker daemon”** error inside WSL2. Let’s break this down step by step.
+
+---
+
+## 🔍 Why This Happens
+- The warning about `version` in your `docker-compose.yml` is harmless (just remove the `version:` line to clean it up).
+- The real blocker is:  
+  ```
+  Cannot connect to the Docker daemon at unix:///var/run/docker.sock
+  ```
+  This means your WSL distro can’t talk to the Docker daemon. In WSL2, Docker doesn’t run natively unless you’ve installed and started it inside Ubuntu. Most setups rely on **Docker Desktop with WSL integration**.
+
+---
+
+## ✅ Fix Options
+
+### Option 1: Use Docker Desktop with WSL2 Integration (Recommended)
+1. Install **Docker Desktop for Windows**.
+2. Open **Settings → Resources → WSL Integration**.
+3. Enable integration for your Ubuntu distro.
+4. Restart Docker Desktop.
+5. Test inside WSL:
+   ```bash
+   docker info
+   docker compose up --build -d
+   ```
+
+This way, Docker Desktop runs the daemon, and WSL connects to it via the socket.
+
+---
+
+### Option 2: Run Docker Daemon Directly Inside WSL
+If you don’t want Docker Desktop:
+1. Install Docker Engine inside WSL (Ubuntu):
+   ```bash
+   sudo apt-get update
+   sudo apt-get install -y docker.io
+   ```
+2. Start the daemon manually:
+   ```bash
+   sudo service docker start
+   ```
+3. Test:
+   ```bash
+   docker run hello-world
+   ```
+4. Then retry:
+   ```bash
+   docker compose up --build -d
+   ```
+
+⚠️ Note: Running the daemon inside WSL can be heavier and less integrated with Windows networking.
+
+---
+
+### Option 3: Quick Debug Checklist
+- Run `docker ps` → if it fails, daemon isn’t running.
+- Run `sudo service docker status` → check if active.
+- If using Docker Desktop, confirm WSL integration is enabled.
+- Ensure your user is in the `docker` group:
+  ```bash
+  sudo usermod -aG docker $USER
+  newgrp docker
+  ```
+
+##
+
+ansible KubeadmMasters -m command -a "which kubeadm"
+ansible KubeadmMasters -m command -a "kubeadm version"
+
+
+###
+ansible KubeadmMasters -m command -a "sudo kubeadm config view"
+ansible KubeadmMasters -m command -a "sudo kubeadm token list"
+
+###
+ansible KubeadmMasters -m command -a "systemctl status kubelet"
+ansible KubeadmMasters -m command -a "systemctl is-active kubelet"
+
+##
+ansible KubeadmMasters -m command -a "kubectl get pods -n kube-system"
+ansible KubeadmMasters -b -m command -a "systemctl is-active kubelet"
+
+##
+ansible KubeadmMasters -m shell -a "kubelet --version && kubectl version --client" --become
+ansible KubeadmMasters -m shell -a "apt-cache policy kubelet" --become
+ansible KubeadmMasters -m shell -a "systemctl status kubelet" --become
+

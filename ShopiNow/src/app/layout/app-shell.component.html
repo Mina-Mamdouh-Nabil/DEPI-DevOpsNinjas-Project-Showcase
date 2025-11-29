@@ -1,0 +1,114 @@
+<div class="shell" [class.auth-layout]="isAuthPage">
+  <header class="shell__header" *ngIf="!isAuthPage">
+    <div class="header-top">
+      <a routerLink="/" class="logo">ShopiNow</a>
+      
+      <div class="delivery-info">
+        <span class="delivery-label">Deliver to</span>
+        <span class="delivery-location">Select location</span>
+      </div>
+
+      <div class="search-wrapper">
+        <form class="search" (ngSubmit)="onSearch()">
+          <select 
+            class="search-category" 
+            aria-label="Search category"
+            [(ngModel)]="selectedSearchCategory"
+            (ngModelChange)="onCategoryChange($event)"
+            name="searchCategory"
+          >
+            <option *ngFor="let cat of searchCategories" [value]="cat.value">{{ cat.label }}</option>
+          </select>
+          <div class="search-input-wrapper">
+            <input
+              type="text"
+              placeholder="Search ShopiNow"
+              [(ngModel)]="searchQuery"
+              name="searchQuery"
+              (input)="onSearchInput()"
+              (blur)="hideSuggestions()"
+              (focus)="onSearchInput()"
+              aria-label="Search the store"
+            />
+            <button
+              *ngIf="searchQuery && searchQuery.trim().length > 0"
+              type="button"
+              class="clear-search-button"
+              (click)="clearSearch()"
+              aria-label="Clear search"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+          <button type="submit" class="search-button" aria-label="Search">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+          </button>
+        </form>
+        <div class="search-suggestions" *ngIf="showSuggestions && suggestions.length > 0">
+          <div
+            *ngFor="let suggestion of suggestions"
+            class="suggestion-item"
+            (mousedown)="selectSuggestion(suggestion)"
+          >
+            {{ suggestion }}
+          </div>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <a *ngIf="!isAuthenticated" routerLink="/auth/login" class="account-menu">
+          <span class="account-label">Hello, sign in</span>
+          <span class="account-text">Account & Lists</span>
+        </a>
+        <a *ngIf="isAuthenticated" routerLink="/account" class="account-menu">
+          <span class="account-label">Hello, {{ currentUser?.name || 'User' }}</span>
+          <span class="account-text">Account & Lists</span>
+        </a>
+
+        <a *ngIf="isAuthenticated" routerLink="/account" class="returns-orders">
+          <span class="returns-label">Returns</span>
+          <span class="returns-text">& Orders</span>
+        </a>
+        <div *ngIf="!isAuthenticated" class="returns-orders">
+          <span class="returns-label">Returns</span>
+          <span class="returns-text">& Orders</span>
+        </div>
+
+        <a routerLink="/cart" class="cart">
+          <div class="cart-icon-wrapper">
+            <svg width="38" height="26" viewBox="0 0 38 26" fill="none">
+              <path d="M7.5 7.5L10.5 20.5H27.5L30.5 7.5H7.5Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+              <circle cx="13" cy="23" r="1.5" fill="currentColor"/>
+              <circle cx="25" cy="23" r="1.5" fill="currentColor"/>
+            </svg>
+          </div>
+          <span class="cart-text">Cart</span>
+          <span class="cart-badge" *ngIf="cartCount > 0" aria-label="Items in cart">{{ cartCount }}</span>
+        </a>
+      </div>
+    </div>
+
+    <nav class="header-nav">
+      <a routerLink="/" class="nav-all">
+        <span class="nav-icon">☰</span>
+        <span>All</span>
+      </a>
+      <a href="#">Today's Deals</a>
+      <a href="#">Customer Service</a>
+      <a href="#">Registry</a>
+      <a href="#">Gift Cards</a>
+      <a href="#">Sell</a>
+    </nav>
+  </header>
+  <main class="shell__content" [class.auth-content]="isAuthPage">
+    <router-outlet></router-outlet>
+  </main>
+  <app-footer *ngIf="!isAuthPage"></app-footer>
+</div>
+

@@ -1,0 +1,127 @@
+.category-page {
+  .loading, .error, .error-message {
+    text-align: center;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+    margin-bottom: 1.5rem;
+  }
+
+  .error, .error-message {
+    color: #dc2626;
+  }
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 1rem 1rem 2rem;
+  background: #eaeded;
+
+  .category-header {
+    background: #fff;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+
+    .breadcrumb {
+      font-size: 0.8125rem;
+      color: #007185;
+      margin-bottom: 0.75rem;
+
+      a {
+        color: #007185;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+          color: #c7511f;
+        }
+      }
+
+      span {
+        margin: 0 0.375rem;
+        color: #565959;
+      }
+    }
+
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 400;
+      color: #0f1111;
+      margin: 0 0 0.5rem;
+      line-height: 1.2;
+    }
+
+    .category-description {
+      font-size: 0.875rem;
+      color: #565959;
+      margin: 0;
+    }
+  }
+
+  .category-content {
+    .results-header {
+      background: #fff;
+      padding: 1rem 1.5rem;
+      margin-bottom: 1rem;
+      border-radius: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .results-info {
+        font-size: 0.875rem;
+        color: #565959;
+      }
+
+      .sort-controls {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        label {
+          font-size: 0.875rem;
+          color: #0f1111;
+        }
+
+        .sort-select {
+          padding: 0.5rem;
+          border: 1px solid #d5d9d9;
+          border-radius: 4px;
+          background: #fff;
+          font-size: 0.875rem;
+          cursor: pointer;
+
+          &:focus {
+            outline: 2px solid #ff9900;
+            outline-offset: 1px;
+          }
+        }
+      }
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 0.75rem;
+
+      @media (min-width: 600px) {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+      }
+
+      @media (min-width: 900px) {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      }
+    }
+
+    .empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 3rem 1rem;
+      background: #fff;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      color: #565959;
+    }
+  }
+}

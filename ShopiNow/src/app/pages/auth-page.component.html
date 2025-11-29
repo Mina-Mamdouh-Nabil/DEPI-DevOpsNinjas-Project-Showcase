@@ -1,0 +1,108 @@
+<div class="auth-container">
+  <div class="auth-wrapper">
+    <div class="auth-header">
+      <a routerLink="/" class="logo">
+        <span class="logo-text">ShopiNow</span>
+      </a>
+    </div>
+
+    <div class="auth-card">
+      <h1>{{ isLoginMode ? 'Sign in' : 'Create account' }}</h1>
+
+      <form (ngSubmit)="onSubmit()">
+        <div *ngIf="!isLoginMode" class="form-group">
+          <label for="name">Your name</label>
+          <input
+            type="text"
+            id="name"
+            [(ngModel)]="registrationData.name"
+            name="name"
+            class="form-control"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label *ngIf="isLoginMode" for="loginEmail">Email or mobile phone number</label>
+          <label *ngIf="!isLoginMode" for="regEmail">Email</label>
+          <input
+            *ngIf="isLoginMode"
+            type="email"
+            id="loginEmail"
+            [(ngModel)]="loginData.email"
+            name="loginEmail"
+            class="form-control"
+            required
+          />
+          <input
+            *ngIf="!isLoginMode"
+            type="email"
+            id="regEmail"
+            [(ngModel)]="registrationData.email"
+            name="regEmail"
+            class="form-control"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <div class="password-label-row">
+            <label *ngIf="isLoginMode" for="loginPassword">Password</label>
+            <label *ngIf="!isLoginMode" for="regPassword">Password</label>
+            <a *ngIf="isLoginMode" href="#" class="forgot-password">Forgot password?</a>
+          </div>
+          <input
+            *ngIf="isLoginMode"
+            type="password"
+            id="loginPassword"
+            [(ngModel)]="loginData.password"
+            name="loginPassword"
+            class="form-control"
+            required
+          />
+          <input
+            *ngIf="!isLoginMode"
+            type="password"
+            id="regPassword"
+            [(ngModel)]="registrationData.password"
+            name="regPassword"
+            class="form-control"
+            placeholder="At least 6 characters"
+            required
+          />
+        </div>
+
+        <div *ngIf="!isLoginMode" class="form-group">
+          <label for="confirmPassword">Re-enter password</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            [(ngModel)]="registrationData.confirmPassword"
+            name="confirmPassword"
+            class="form-control"
+            required
+          />
+        </div>
+
+        <button type="submit" class="btn-continue">
+          {{ isLoginMode ? 'Sign in' : 'Continue' }}
+        </button>
+      </form>
+
+      <div *ngIf="isLoginMode" class="auth-divider">
+        <span>New to ShopiNow?</span>
+      </div>
+
+      <div class="auth-footer">
+        <a *ngIf="isLoginMode" routerLink="/auth/register" class="create-account-btn">
+          Create your ShopiNow account
+        </a>
+        <div *ngIf="!isLoginMode" class="sign-in-section">
+          <p>Already have an account?</p>
+          <a routerLink="/auth/login" class="sign-in-link">Sign in</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

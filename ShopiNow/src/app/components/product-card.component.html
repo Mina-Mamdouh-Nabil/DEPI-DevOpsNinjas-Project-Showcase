@@ -1,0 +1,25 @@
+<div class="card product-card h-100">
+  <a [routerLink]="['/product', product.id]" class="text-decoration-none text-dark">
+    <div class="card-img-wrapper position-relative">
+      <img [src]="product.image" [alt]="product.name" class="card-img-top" loading="lazy" />
+      <div class="badge-row position-absolute top-0 start-0" *ngIf="product.badges?.length">
+        <span *ngFor="let badge of product.badges" class="badge-item">{{ badge }}</span>
+      </div>
+    </div>
+    <div class="card-body d-flex flex-column">
+      <h5 class="card-title">{{ product.name }}</h5>
+      <div class="rating mb-2">
+        <span class="rating-stars">⭐</span>
+        <span class="rating-text">{{ product.rating.toFixed(1) }} ({{ product.reviews }})</span>
+      </div>
+      <div class="pricing mb-2">
+        <span class="current-price">{{ product.price | currency : 'USD' : 'symbol' : '1.0-0' }}</span>
+        <span class="old-price" *ngIf="product.oldPrice">{{ product.oldPrice | currency : 'USD' : 'symbol' : '1.0-0' }}</span>
+      </div>
+    </div>
+  </a>
+  <div class="card-body pt-0">
+    <button type="button" class="btn btn-warning w-100" (click)="addToCart($event)">Add to Cart</button>
+  </div>
+</div>
+

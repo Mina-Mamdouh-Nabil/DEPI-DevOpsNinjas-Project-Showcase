@@ -1,0 +1,31 @@
+---
+galaxy_info:
+  role_name: kubeadm
+  author: darkwizard242
+  description: Installs/Uninstalls 'kubeadm', Administrative CLI for Kubernetes Cluster.
+  company: none
+  license: MIT
+  min_ansible_version: 2.4
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - noble
+        - jammy
+        - focal
+    - name: Debian
+      versions:
+        - bullseye
+        - buster
+    - name: EL
+      versions:
+        - 8
+
+  galaxy_tags:
+    - kubeadm
+    - kubernetes
+    - cli
+    - linux
+    - system
+
+dependencies: []

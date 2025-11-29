@@ -1,0 +1,72 @@
+<section class="account">
+  <div *ngIf="loading" class="loading">
+    <p>Loading your profile...</p>
+    <p style="font-size: 0.85rem; color: #6b7280; margin-top: 0.5rem;">
+      If this takes too long, check the browser console (F12) for errors.
+    </p>
+  </div>
+
+  <div *ngIf="error" class="error">
+    <p>{{ error }}</p>
+  </div>
+
+  <div *ngIf="!loading && !error && userProfile">
+    <header>
+      <p class="eyebrow">Your Account</p>
+      <h1>Hello, {{ userProfile.name }}</h1>
+      <p>Manage your account settings and view order history.</p>
+    </header>
+
+    <!-- User Profile Section -->
+    <div class="profile-section">
+      <div class="profile-header">
+        <h2>Profile Information</h2>
+        <button class="btn-logout" (click)="logout()">Logout</button>
+      </div>
+      <div class="profile-details">
+        <div class="profile-item">
+          <span class="label">Name:</span>
+          <span class="value">{{ userProfile.name }}</span>
+        </div>
+        <div class="profile-item">
+          <span class="label">Email:</span>
+          <span class="value">{{ userProfile.email }}</span>
+        </div>
+        <div class="profile-item">
+          <span class="label">Account Type:</span>
+          <span class="value">{{ userProfile.role === 'ADMIN' ? 'Administrator' : 'Standard User' }}</span>
+        </div>
+        <div class="profile-item" *ngIf="userProfile.createdAt">
+          <span class="label">Member Since:</span>
+          <span class="value">{{ formatDate(userProfile.createdAt) }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="highlight-grid">
+      <article *ngFor="let highlight of accountHighlights">
+        <h2>{{ highlight.title }}</h2>
+        <p>{{ highlight.detail }}</p>
+      </article>
+    </div>
+
+    <div class="orders">
+      <div class="section-heading">
+        <h2>Recent Orders</h2>
+        <a routerLink="/account">See all orders</a>
+      </div>
+      <p class="note" *ngIf="recentOrders.length === 0">No orders yet. Start shopping to see your orders here.</p>
+      <div class="order-list" *ngIf="recentOrders.length > 0">
+        <article *ngFor="let order of recentOrders">
+          <div>
+            <p class="order-id">Order {{ order.id }}</p>
+            <p class="order-status">{{ order.status }}</p>
+          </div>
+          <span class="order-total">{{ order.total }}</span>
+          <p class="eta">{{ order.eta }}</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+

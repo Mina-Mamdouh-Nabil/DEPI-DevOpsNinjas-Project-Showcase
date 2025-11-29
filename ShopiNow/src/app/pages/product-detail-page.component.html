@@ -1,0 +1,124 @@
+<ng-container *ngIf="product; else missing">
+  <div class="product-detail-container">
+    <div class="product-detail">
+      <div class="product-images">
+        <div class="main-image">
+          <img [src]="product.image" [alt]="product.name" />
+        </div>
+        <div class="image-thumbnails">
+          <div class="thumbnail active">
+            <img [src]="product.image" [alt]="product.name" />
+          </div>
+        </div>
+      </div>
+
+      <div class="product-info">
+        <div class="breadcrumb">
+          <a routerLink="/">Home</a>
+          <span>></span>
+          <a [routerLink]="['/category', product.category]">{{ product.category | titlecase }}</a>
+          <span>></span>
+          <span>{{ product.name }}</span>
+        </div>
+
+        <h1 class="product-title">{{ product.name }}</h1>
+
+        <div class="product-rating">
+          <div class="rating-stars">
+            <span class="star">⭐</span>
+            <a href="#reviews" class="rating-link">
+              {{ product.rating.toFixed(1) }}
+            </a>
+          </div>
+          <a href="#reviews" class="reviews-link">
+            ({{ product.reviews | number }})
+          </a>
+          <span class="divider">|</span>
+          <a href="#reviews" class="reviews-link">See all customer reviews</a>
+        </div>
+
+        <div class="product-price">
+          <span class="price-main">
+            <span class="price-symbol">$</span>
+            <span class="price-amount">{{ (product.price * quantity).toFixed(2) }}</span>
+          </span>
+          <span class="price-unit" *ngIf="quantity > 1">
+            (${{ product.price.toFixed(2) }} per item)
+          </span>
+          <span class="price-old" *ngIf="product.oldPrice">
+            <span *ngIf="quantity === 1">${{ product.oldPrice.toFixed(2) }}</span>
+            <span *ngIf="quantity > 1">${{ (product.oldPrice * quantity).toFixed(2) }}</span>
+          </span>
+          <span class="price-save" *ngIf="product.oldPrice">
+            Save ${{ ((product.oldPrice - product.price) * quantity).toFixed(2) }} ({{ ((1 - product.price / product.oldPrice) * 100).toFixed(0) }}%)
+          </span>
+        </div>
+
+        <div class="product-badges" *ngIf="product.badges?.length">
+          <span *ngFor="let badge of product.badges" class="badge">{{ badge }}</span>
+        </div>
+
+        <div class="product-description">
+          <h3>About this item</h3>
+          <p>{{ product.description }}</p>
+        </div>
+
+        <div class="product-actions">
+          <div class="quantity-selector">
+            <label>Quantity:</label>
+            <select 
+              [(ngModel)]="quantity" 
+              class="qty-select"
+              name="quantity"
+            >
+              <option *ngFor="let qty of quantityOptions" [ngValue]="qty">{{ qty }}</option>
+            </select>
+          </div>
+          <button type="button" class="btn-add-to-cart" (click)="addToCart()">
+            Add to Cart
+          </button>
+          <button type="button" class="btn-buy-now">
+            Buy Now
+          </button>
+        </div>
+
+        <div class="product-delivery">
+          <div class="delivery-info">
+            <span class="delivery-icon">🚚</span>
+            <div>
+              <strong>FREE delivery</strong>
+              <span>on orders over $25 shipped by ShopiNow</span>
+            </div>
+          </div>
+          <div class="delivery-info">
+            <span class="delivery-icon">📍</span>
+            <div>
+              <strong>Deliver to Egypt</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-stock">
+          <span class="in-stock">In Stock</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="related-products" *ngIf="relatedProducts.length > 0">
+      <h2>Customers who viewed this item also viewed</h2>
+      <div class="related-grid">
+        <app-product-card
+          *ngFor="let relatedProduct of relatedProducts"
+          [product]="relatedProduct"
+        ></app-product-card>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #missing>
+  <div class="empty-state">
+    <p>We could not find that product.</p>
+    <a routerLink="/" class="btn-back">Continue Shopping</a>
+  </div>
+</ng-template>

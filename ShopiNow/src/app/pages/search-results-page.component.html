@@ -1,0 +1,99 @@
+<div class="search-results-container">
+  <div class="search-header">
+    <h2 *ngIf="searchQuery">Search results for "{{ searchQuery }}"</h2>
+    <p *ngIf="searchQuery && !isLoading" class="results-count">
+      {{ filteredResults.length }} {{ filteredResults.length === 1 ? 'result' : 'results' }} found
+    </p>
+  </div>
+
+  <div *ngIf="isLoading" class="loading">
+    <div class="spinner">Loading...</div>
+  </div>
+
+  <div *ngIf="!isLoading && searchQuery && results.length > 0" class="search-content">
+    <aside class="filters-sidebar">
+      <div class="filters-card">
+        <div class="filters-header">
+          <h3>Filter by</h3>
+          <button type="button" class="clear-filters" (click)="clearFilters()">Clear all</button>
+        </div>
+
+        <div class="filter-group">
+          <label>Category</label>
+          <select 
+            [(ngModel)]="selectedCategory" 
+            (ngModelChange)="selectedCategory = $event; applyFilters()" 
+            class="filter-select"
+            name="categoryFilter"
+            id="categoryFilter"
+          >
+            <option value="all">All Categories</option>
+            <option *ngFor="let cat of categories" [value]="cat.name">{{ cat.name }}</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label>Price Range</label>
+          <div class="price-inputs">
+            <input
+              type="number"
+              [(ngModel)]="minPrice"
+              (ngModelChange)="onFilterChange()"
+              placeholder="Min"
+              class="price-input"
+            />
+            <span>to</span>
+            <input
+              type="number"
+              [(ngModel)]="maxPrice"
+              (ngModelChange)="onFilterChange()"
+              placeholder="Max"
+              class="price-input"
+            />
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <label>Minimum Rating</label>
+          <select [(ngModel)]="minRating" (ngModelChange)="onFilterChange()" class="filter-select">
+            <option [value]="0">Any Rating</option>
+            <option [value]="4">4+ Stars</option>
+            <option [value]="4.5">4.5+ Stars</option>
+          </select>
+        </div>
+      </div>
+    </aside>
+
+    <div class="results-section">
+      <div class="results-header">
+        <div class="sort-controls">
+          <label>Sort by:</label>
+          <select [(ngModel)]="selectedSort" (ngModelChange)="onFilterChange()" class="sort-select">
+            <option *ngFor="let option of sortOptions" [value]="option.value">{{ option.label }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div *ngIf="filteredResults.length === 0" class="no-results">
+        <p>No products match your filters.</p>
+        <button type="button" class="clear-btn" (click)="clearFilters()">Clear filters</button>
+      </div>
+
+      <div *ngIf="filteredResults.length > 0" class="product-grid">
+        <app-product-card
+          *ngFor="let product of filteredResults"
+          [product]="product"
+        ></app-product-card>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!isLoading && searchQuery && results.length === 0" class="no-results">
+    <p>No products found matching "{{ searchQuery }}"</p>
+    <p class="suggestions">Try searching with different keywords or browse our categories.</p>
+  </div>
+
+  <div *ngIf="!searchQuery" class="empty-state">
+    <p>Enter a search term to find products</p>
+  </div>
+</div>

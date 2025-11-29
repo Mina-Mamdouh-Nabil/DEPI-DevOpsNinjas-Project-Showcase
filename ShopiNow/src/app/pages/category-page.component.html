@@ -1,0 +1,40 @@
+<div class="category-page">
+  <div class="category-header" *ngIf="selectedCategoryId">
+    <div class="breadcrumb">
+      <a routerLink="/">Home</a>
+      <span>></span>
+      <span>{{ selectedCategory?.name || selectedCategoryId | titlecase }}</span>
+    </div>
+    <h1>{{ selectedCategory?.name || selectedCategoryId | titlecase }}</h1>
+    <p class="category-description" *ngIf="selectedCategory?.description">{{ selectedCategory?.description }}</p>
+  </div>
+  
+  <div *ngIf="!selectedCategoryId && !loading" class="error-message">
+    <p>Category not found or failed to load.</p>
+  </div>
+
+  <div class="category-content" *ngIf="!loading && !error && selectedCategoryId">
+    <div class="results-header">
+      <div class="results-info">
+        <span>{{ filteredProducts.length }} {{ filteredProducts.length === 1 ? 'product' : 'products' }}</span>
+      </div>
+      <div class="sort-controls">
+        <label>Sort by:</label>
+        <select [(ngModel)]="selectedSort" (ngModelChange)="onSortChange()" class="sort-select">
+          <option *ngFor="let option of sortOptions" [value]="option.value">{{ option.label }}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="product-grid">
+      <app-product-card
+        *ngFor="let product of filteredProducts"
+        [product]="product"
+      ></app-product-card>
+      <p class="empty" *ngIf="!filteredProducts.length">
+        No products in this category yet. Please check back soon.
+      </p>
+    </div>
+  </div>
+</div>
+

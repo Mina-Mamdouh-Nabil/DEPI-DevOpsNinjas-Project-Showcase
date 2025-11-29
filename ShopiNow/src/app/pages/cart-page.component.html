@@ -1,0 +1,92 @@
+<div class="cart-container">
+  <div class="cart-header">
+    <h1>Shopping Cart</h1>
+    <div class="cart-subtitle" *ngIf="cartItems.length > 0">
+      <span class="item-count">{{ cartItems.length }} {{ cartItems.length === 1 ? 'item' : 'items' }}</span>
+    </div>
+    <p *ngIf="cartItems.length === 0" class="empty-cart">Your ShopiNow Cart is empty.</p>
+  </div>
+
+  <div class="cart-content" *ngIf="cartItems.length > 0">
+    <div class="cart-items-section">
+      <div class="cart-items">
+        <div *ngFor="let item of cartItems; let i = index" class="cart-item">
+          <div class="item-image">
+            <img [src]="item.product.image" [alt]="item.product.name" />
+          </div>
+          <div class="item-details">
+            <h3 class="item-title">
+              <a [routerLink]="['/product', item.product.id]">{{ item.product.name }}</a>
+            </h3>
+            <div class="item-info-row">
+              <span class="item-rating">
+                <span class="star">⭐</span>
+                {{ item.product.rating.toFixed(1) }}
+              </span>
+              <span class="item-price-unit">{{ item.product.price | currency : 'USD' : 'symbol' : '1.0-0' }}</span>
+              <span class="in-stock">In Stock</span>
+            </div>
+            <div class="item-actions">
+              <div class="quantity-selector">
+                <label>Qty:</label>
+                <select
+                  [ngModel]="item.quantity"
+                  (ngModelChange)="updateQuantity(item, $event)"
+                  class="qty-select"
+                  [name]="'qty-' + item.product.id"
+                >
+                  <option *ngFor="let qty of [1,2,3,4,5,6,7,8,9,10]" [ngValue]="qty">{{ qty }}</option>
+                </select>
+              </div>
+              <span class="action-divider">|</span>
+              <button
+                type="button"
+                class="action-link delete-btn"
+                (click)="removeItem(item)"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+          <div class="item-price">
+            <strong>{{ (item.product.price * item.quantity) | currency : 'USD' : 'symbol' : '1.0-0' }}</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="cart-subtotal-mobile">
+        <div class="subtotal-row">
+          <span>Subtotal ({{ cartItems.length }} {{ cartItems.length === 1 ? 'item' : 'items' }}):</span>
+          <strong>{{ subtotal | currency : 'USD' : 'symbol' : '1.0-0' }}</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="cart-summary">
+      <div class="summary-card">
+        <div class="summary-header">
+          <span class="subtotal-label">Subtotal ({{ cartItems.length }} {{ cartItems.length === 1 ? 'item' : 'items' }}):</span>
+          <span class="subtotal-value">{{ subtotal | currency : 'USD' : 'symbol' : '1.0-0' }}</span>
+        </div>
+        <div class="summary-note">
+          <small>This order qualifies for FREE Delivery</small>
+        </div>
+        <button
+          type="button"
+          class="checkout-btn"
+          (click)="proceedToCheckout()"
+        >
+          Proceed to checkout
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="cartItems.length === 0" class="empty-cart-state">
+    <div class="empty-cart-icon">🛒</div>
+    <h2>Your ShopiNow Cart is empty</h2>
+    <p>Shop today's deals</p>
+    <a routerLink="/" class="shop-btn">Shop now</a>
+  </div>
+</div>
+
