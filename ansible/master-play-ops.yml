@@ -1,0 +1,53 @@
+- hosts: KubeadmMasters
+  become: yes
+
+  roles:
+    - darkwizard242.kubeadm
+
+  tasks:
+    - name: Ensure keyrings directory exists
+      file:
+        path: /etc/apt/keyrings
+        state: directory
+        mode: 0755
+
+    # --- FIX START ---
+    # 1. DELETE the old file so Ansible doesn't skip the fix
+    - name: Remove existing/corrupted GPG key
+      file:
+        path: /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+        state: absent
+
+    # 2. Download key to a TEMP location (so we don't confuse apt)
+    - name: Download Kubernetes apt key to temp
+      get_url:
+        url: https://pkgs.k8s.io/core:/stable:/v1.34/deb/Release.key
+        dest: /tmp/kubernetes-apt-keyring.key
+        mode: '0644'
+
+    # 3. Convert ASCII key to Binary GPG format
+    - name: Convert key to gpg format
+      shell: gpg --dearmor --yes -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg /tmp/kubernetes-apt-keyring.key
+    # --- FIX END ---
+
+    - name: Clean up temp file
+      file:
+        path: /tmp/kubernetes-apt-keyring.key
+        state: absent
+
+    - name: Add Kubernetes apt repository
+      apt_repository:
+        repo: "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.34/deb/ /"
+        state: present
+        filename: kubernetes
+
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install kubelet and kubectl
+      apt:
+        name:
+          - kubelet
+          - kubectl
+        state: present
