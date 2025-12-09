@@ -22,7 +22,7 @@ export class AccountPageComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private cdr: ChangeDetectorRef
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     console.log('[Account] Component initialized - Current state:', {
@@ -30,7 +30,7 @@ export class AccountPageComponent implements OnInit {
       hasProfile: !!this.userProfile,
       hasError: !!this.error
     });
-    
+
     // If we already have profile data, don't reload
     if (this.userProfile) {
       console.log('[Account] Profile already loaded, skipping reload');
@@ -38,7 +38,7 @@ export class AccountPageComponent implements OnInit {
       this.cdr.detectChanges();
       return;
     }
-    
+
     // Auth guard handles redirect, but we keep this as a safety check
     if (!this.authService.isAuthenticated()) {
       console.log('[Account] Not authenticated - guard will redirect');
@@ -51,7 +51,7 @@ export class AccountPageComponent implements OnInit {
     const token = this.authService.getToken();
     console.log('[Account] Init - Token exists:', !!token);
     console.log('[Account] Init - Is authenticated:', this.authService.isAuthenticated());
-    
+
     if (!token) {
       console.log('[Account] No token found - redirecting to login');
       this.loading = false;
@@ -73,7 +73,7 @@ export class AccountPageComponent implements OnInit {
     // Check token first
     const token = this.authService.getToken();
     console.log('Token from localStorage:', token ? 'Token exists' : 'No token');
-    
+
     if (!token) {
       this.loading = false;
       this.error = 'No authentication token. Please login.';
@@ -96,7 +96,7 @@ export class AccountPageComponent implements OnInit {
 
     console.log('Calling getUserProfile API...');
     const startTime = Date.now();
-    
+
     this.apiService.getUserProfile().subscribe({
       next: (profile) => {
         clearTimeout(timeout);
@@ -121,7 +121,7 @@ export class AccountPageComponent implements OnInit {
           error: error.error
         });
         this.loading = false;
-        
+
         // Error interceptor handles 401 redirect, but we still need to handle the error here
         if (error.status === 401 || error.status === 403) {
           // Token is invalid - clear and redirect
@@ -134,13 +134,13 @@ export class AccountPageComponent implements OnInit {
           }, 2000);
           return;
         }
-        
+
         // Network/CORS errors
         if (error.status === 0 || error.message?.includes('Network') || error.message?.includes('Failed to fetch')) {
-          this.error = 'Cannot connect to server. Is the backend running on http://localhost:8080?';
+          this.error = 'Cannot connect to server. Please check your internet connection.';
           return;
         }
-        
+
         // Other errors
         this.error = error.error?.message || `Failed to load profile. Error: ${error.status || 'Unknown'}`;
       }
@@ -186,7 +186,7 @@ export class AccountPageComponent implements OnInit {
 
   get accountHighlights() {
     if (!this.userProfile) return [];
-    
+
     return [
       {
         title: 'Account Information',
@@ -207,9 +207,9 @@ export class AccountPageComponent implements OnInit {
     if (!dateString) return 'Recently';
     try {
       const date = new Date(dateString);
-      return date.toLocaleDateString('en-US', { 
-        year: 'numeric', 
-        month: 'long' 
+      return date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long'
       });
     } catch {
       return 'Recently';

@@ -65,9 +65,9 @@ export interface UserDto {
   providedIn: 'root'
 })
 export class ApiService {
-  private apiUrl = 'http://localhost:8080/api';
+  private apiUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   // Products
   getProducts(): Observable<ProductDto[]> {
@@ -98,7 +98,7 @@ export class ApiService {
     if (minPrice) params = params.set('minPrice', minPrice.toString());
     if (maxPrice) params = params.set('maxPrice', maxPrice.toString());
     if (minRating) params = params.set('minRating', minRating.toString());
-    
+
     return this.http.get<ProductDto[]>(`${this.apiUrl}/products/filter`, { params });
   }
 
@@ -167,7 +167,7 @@ export class ApiService {
     console.log('[API] getUserProfile - URL:', `${this.apiUrl}/user/profile`);
     console.log('[API] getUserProfile - Token present:', !!token);
     console.log('[API] getUserProfile - Token value:', token ? token.substring(0, 30) + '...' : 'none');
-    
+
     return this.http.get<UserDto>(`${this.apiUrl}/user/profile`, {
       headers: headers
     });
