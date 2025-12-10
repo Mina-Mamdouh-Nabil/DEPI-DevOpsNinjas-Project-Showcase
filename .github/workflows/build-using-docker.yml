@@ -19,6 +19,10 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd ~/app || mkdir ~/app && cd ~/app
-            git pull https://github.com/AhmedAlhusaini/DEPI-DevOpsNinjas-Project-Showcase.git
+            if [ ! -d ".git" ]; then
+              git clone https://github.com/AhmedAlhusaini/DEPI-DevOpsNinjas-Project-Showcase.git .
+            else
+              git pull origin main
+            fi
             docker-compose build
             docker-compose up -d
