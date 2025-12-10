@@ -18,11 +18,21 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
+            # Ensure Docker + Compose plugin are installed
+            sudo dnf install -y docker docker-compose-plugin || true
+            sudo systemctl enable docker
+            sudo systemctl start docker
+
+            # Prepare app directory
             cd ~/app || mkdir ~/app && cd ~/app
+
+            # Clone if missing, otherwise pull latest
             if [ ! -d ".git" ]; then
               git clone https://github.com/AhmedAlhusaini/DEPI-DevOpsNinjas-Project-Showcase.git .
             else
               git pull origin main
             fi
-            docker-compose build
-            docker-compose up -d
+
+            # Build and run with Docker Compose v2
+            docker compose build
+            docker compose up -d
