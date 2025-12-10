@@ -4,7 +4,7 @@ A collaborative project tackling modern **DevOps challenges** with **Kubernetes,
 This repo provides reproducible configs, deployment scripts, and guides for cloud-native workflows 🌐💻.  
 Built by the **DEPI DevOps Team** 🤝.
 
----
+
 
 ## ✨ Features
 - 📦 **Containerization** with Docker & docker-compose
@@ -13,8 +13,6 @@ Built by the **DEPI DevOps Team** 🤝.
 - 🔧 **Ansible playbooks** for automation across hybrid environments
 - 🛠️ **CI/CD pipelines** for streamlined delivery
 
-
----
 
 ## 🗂️ Repository Structure
 ```
@@ -29,7 +27,6 @@ DOCKER_GUIDE.md   → Docker usage guide
 README.md         → Project overview
 ```
 
----
 
 ## 🚀 Getting Started
 
@@ -56,7 +53,7 @@ terraform init && terraform apply
 ansible-playbook -i inventory playbook.yml
 ```
 
----
+
 
 ## 📖 Documentation
 - [DOCKER_GUIDE.md](DOCKER_GUIDE.md) → Docker setup & usage
@@ -64,20 +61,6 @@ ansible-playbook -i inventory playbook.yml
 - Terraform modules → `terraform/`
 - Ansible automation → `ansible/`
 
----
-
-## 🛡️ License
-This project is open-source under the MIT License.
-
----
-
-## 🔖 Topics
-`devops` `kubernetes` `terraform` `docker` `ansible`  
-`cloud-native` `automation` `iac` `ci-cd` `gitops`  
-`microservices` `aws` `containers` `hybrid-cloud`  
-`education` `onboarding-labs` `gis` `typescript` `java` `scss`  
-
----
 
 ## 🌟 Acknowledgements
 Special thanks to the **DEPI DevOps Team** for collaboration, innovation, and reproducibility in cloud-native workflows.
