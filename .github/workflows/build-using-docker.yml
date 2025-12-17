@@ -44,3 +44,4 @@ jobs:
         run: |
           docker tag depi-devopsninjas-project-showcase-frontend:latest ${{ secrets.DOCKERHUB_USERNAME }}/depi-devopsninjas-project-showcase-frontend:latest
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/depi-devopsninjas-project-showcase-frontend:latest
+        #-name: echo done
