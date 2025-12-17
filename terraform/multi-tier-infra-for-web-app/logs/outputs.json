@@ -1,0 +1,556 @@
+{
+  "db_instance_endpoint": {
+    "sensitive": false,
+    "type": "string",
+    "value": "rds-terraform.cqpq2ww804ex.us-east-1.rds.amazonaws.com:3306"
+  },
+  "db_instance_id": {
+    "sensitive": false,
+    "type": "string",
+    "value": "db-EW2D6QC35IN2WDDEGLFWNMTDQ4"
+  },
+  "db_security_group_id": {
+    "sensitive": false,
+    "type": "string",
+    "value": "sg-036ea335ef8f23e25"
+  },
+  "db_subnet_group_name": {
+    "sensitive": false,
+    "type": "string",
+    "value": "rds-db-subnet"
+  },
+  "internet_gateway_arn": {
+    "sensitive": false,
+    "type": "string",
+    "value": "arn:aws:ec2:us-east-1:718170779365:internet-gateway/igw-0a9530517bf72aed7"
+  },
+  "internet_gateway_id": {
+    "sensitive": false,
+    "type": "string",
+    "value": "igw-0a9530517bf72aed7"
+  },
+  "private_subnets": {
+    "sensitive": false,
+    "type": [
+      "object",
+      {
+        "us-east-1a": [
+          "object",
+          {
+            "arn": "string",
+            "assign_ipv6_address_on_creation": "bool",
+            "availability_zone": "string",
+            "availability_zone_id": "string",
+            "cidr_block": "string",
+            "customer_owned_ipv4_pool": "string",
+            "enable_dns64": "bool",
+            "enable_lni_at_device_index": "number",
+            "enable_resource_name_dns_a_record_on_launch": "bool",
+            "enable_resource_name_dns_aaaa_record_on_launch": "bool",
+            "id": "string",
+            "ipv6_cidr_block": "string",
+            "ipv6_cidr_block_association_id": "string",
+            "ipv6_native": "bool",
+            "map_customer_owned_ip_on_launch": "bool",
+            "map_public_ip_on_launch": "bool",
+            "outpost_arn": "string",
+            "owner_id": "string",
+            "private_dns_hostname_type_on_launch": "string",
+            "region": "string",
+            "tags": [
+              "map",
+              "string"
+            ],
+            "tags_all": [
+              "map",
+              "string"
+            ],
+            "timeouts": [
+              "object",
+              {
+                "create": "string",
+                "delete": "string"
+              }
+            ],
+            "vpc_id": "string"
+          }
+        ],
+        "us-east-1b": [
+          "object",
+          {
+            "arn": "string",
+            "assign_ipv6_address_on_creation": "bool",
+            "availability_zone": "string",
+            "availability_zone_id": "string",
+            "cidr_block": "string",
+            "customer_owned_ipv4_pool": "string",
+            "enable_dns64": "bool",
+            "enable_lni_at_device_index": "number",
+            "enable_resource_name_dns_a_record_on_launch": "bool",
+            "enable_resource_name_dns_aaaa_record_on_launch": "bool",
+            "id": "string",
+            "ipv6_cidr_block": "string",
+            "ipv6_cidr_block_association_id": "string",
+            "ipv6_native": "bool",
+            "map_customer_owned_ip_on_launch": "bool",
+            "map_public_ip_on_launch": "bool",
+            "outpost_arn": "string",
+            "owner_id": "string",
+            "private_dns_hostname_type_on_launch": "string",
+            "region": "string",
+            "tags": [
+              "map",
+              "string"
+            ],
+            "tags_all": [
+              "map",
+              "string"
+            ],
+            "timeouts": [
+              "object",
+              {
+                "create": "string",
+                "delete": "string"
+              }
+            ],
+            "vpc_id": "string"
+          }
+        ]
+      }
+    ],
+    "value": {
+      "us-east-1a": {
+        "arn": "arn:aws:ec2:us-east-1:718170779365:subnet/subnet-013f48cf9e71cb44a",
+        "assign_ipv6_address_on_creation": false,
+        "availability_zone": "us-east-1a",
+        "availability_zone_id": "use1-az1",
+        "cidr_block": "10.0.50.0/24",
+        "customer_owned_ipv4_pool": "",
+        "enable_dns64": false,
+        "enable_lni_at_device_index": 0,
+        "enable_resource_name_dns_a_record_on_launch": false,
+        "enable_resource_name_dns_aaaa_record_on_launch": false,
+        "id": "subnet-013f48cf9e71cb44a",
+        "ipv6_cidr_block": "",
+        "ipv6_cidr_block_association_id": "",
+        "ipv6_native": false,
+        "map_customer_owned_ip_on_launch": false,
+        "map_public_ip_on_launch": false,
+        "outpost_arn": "",
+        "owner_id": "718170779365",
+        "private_dns_hostname_type_on_launch": "ip-name",
+        "region": "us-east-1",
+        "tags": {
+          "Name": "us-east-1a_private_subnet",
+          "Terraform": "true"
+        },
+        "tags_all": {
+          "Name": "us-east-1a_private_subnet",
+          "Owner": "Ahmed Tarek Alhusainy",
+          "Project": "aws-multitier-highly-aviable",
+          "Terraform": "true"
+        },
+        "timeouts": null,
+        "vpc_id": "vpc-0ab32120ae61c93a2"
+      },
+      "us-east-1b": {
+        "arn": "arn:aws:ec2:us-east-1:718170779365:subnet/subnet-0130ecf4e20638678",
+        "assign_ipv6_address_on_creation": false,
+        "availability_zone": "us-east-1b",
+        "availability_zone_id": "use1-az2",
+        "cidr_block": "10.0.60.0/24",
+        "customer_owned_ipv4_pool": "",
+        "enable_dns64": false,
+        "enable_lni_at_device_index": 0,
+        "enable_resource_name_dns_a_record_on_launch": false,
+        "enable_resource_name_dns_aaaa_record_on_launch": false,
+        "id": "subnet-0130ecf4e20638678",
+        "ipv6_cidr_block": "",
+        "ipv6_cidr_block_association_id": "",
+        "ipv6_native": false,
+        "map_customer_owned_ip_on_launch": false,
+        "map_public_ip_on_launch": false,
+        "outpost_arn": "",
+        "owner_id": "718170779365",
+        "private_dns_hostname_type_on_launch": "ip-name",
+        "region": "us-east-1",
+        "tags": {
+          "Name": "us-east-1b_private_subnet",
+          "Terraform": "true"
+        },
+        "tags_all": {
+          "Name": "us-east-1b_private_subnet",
+          "Owner": "Ahmed Tarek Alhusainy",
+          "Project": "aws-multitier-highly-aviable",
+          "Terraform": "true"
+        },
+        "timeouts": null,
+        "vpc_id": "vpc-0ab32120ae61c93a2"
+      }
+    }
+  },
+  "public_subnets": {
+    "sensitive": false,
+    "type": [
+      "object",
+      {
+        "us-east-1a": [
+          "object",
+          {
+            "arn": "string",
+            "assign_ipv6_address_on_creation": "bool",
+            "availability_zone": "string",
+            "availability_zone_id": "string",
+            "cidr_block": "string",
+            "customer_owned_ipv4_pool": "string",
+            "enable_dns64": "bool",
+            "enable_lni_at_device_index": "number",
+            "enable_resource_name_dns_a_record_on_launch": "bool",
+            "enable_resource_name_dns_aaaa_record_on_launch": "bool",
+            "id": "string",
+            "ipv6_cidr_block": "string",
+            "ipv6_cidr_block_association_id": "string",
+            "ipv6_native": "bool",
+            "map_customer_owned_ip_on_launch": "bool",
+            "map_public_ip_on_launch": "bool",
+            "outpost_arn": "string",
+            "owner_id": "string",
+            "private_dns_hostname_type_on_launch": "string",
+            "region": "string",
+            "tags": [
+              "map",
+              "string"
+            ],
+            "tags_all": [
+              "map",
+              "string"
+            ],
+            "timeouts": [
+              "object",
+              {
+                "create": "string",
+                "delete": "string"
+              }
+            ],
+            "vpc_id": "string"
+          }
+        ],
+        "us-east-1b": [
+          "object",
+          {
+            "arn": "string",
+            "assign_ipv6_address_on_creation": "bool",
+            "availability_zone": "string",
+            "availability_zone_id": "string",
+            "cidr_block": "string",
+            "customer_owned_ipv4_pool": "string",
+            "enable_dns64": "bool",
+            "enable_lni_at_device_index": "number",
+            "enable_resource_name_dns_a_record_on_launch": "bool",
+            "enable_resource_name_dns_aaaa_record_on_launch": "bool",
+            "id": "string",
+            "ipv6_cidr_block": "string",
+            "ipv6_cidr_block_association_id": "string",
+            "ipv6_native": "bool",
+            "map_customer_owned_ip_on_launch": "bool",
+            "map_public_ip_on_launch": "bool",
+            "outpost_arn": "string",
+            "owner_id": "string",
+            "private_dns_hostname_type_on_launch": "string",
+            "region": "string",
+            "tags": [
+              "map",
+              "string"
+            ],
+            "tags_all": [
+              "map",
+              "string"
+            ],
+            "timeouts": [
+              "object",
+              {
+                "create": "string",
+                "delete": "string"
+              }
+            ],
+            "vpc_id": "string"
+          }
+        ],
+        "us-east-1c": [
+          "object",
+          {
+            "arn": "string",
+            "assign_ipv6_address_on_creation": "bool",
+            "availability_zone": "string",
+            "availability_zone_id": "string",
+            "cidr_block": "string",
+            "customer_owned_ipv4_pool": "string",
+            "enable_dns64": "bool",
+            "enable_lni_at_device_index": "number",
+            "enable_resource_name_dns_a_record_on_launch": "bool",
+            "enable_resource_name_dns_aaaa_record_on_launch": "bool",
+            "id": "string",
+            "ipv6_cidr_block": "string",
+            "ipv6_cidr_block_association_id": "string",
+            "ipv6_native": "bool",
+            "map_customer_owned_ip_on_launch": "bool",
+            "map_public_ip_on_launch": "bool",
+            "outpost_arn": "string",
+            "owner_id": "string",
+            "private_dns_hostname_type_on_launch": "string",
+            "region": "string",
+            "tags": [
+              "map",
+              "string"
+            ],
+            "tags_all": [
+              "map",
+              "string"
+            ],
+            "timeouts": [
+              "object",
+              {
+                "create": "string",
+                "delete": "string"
+              }
+            ],
+            "vpc_id": "string"
+          }
+        ]
+      }
+    ],
+    "value": {
+      "us-east-1a": {
+        "arn": "arn:aws:ec2:us-east-1:718170779365:subnet/subnet-040b5bc7eec665848",
+        "assign_ipv6_address_on_creation": false,
+        "availability_zone": "us-east-1a",
+        "availability_zone_id": "use1-az1",
+        "cidr_block": "10.0.20.0/24",
+        "customer_owned_ipv4_pool": "",
+        "enable_dns64": false,
+        "enable_lni_at_device_index": 0,
+        "enable_resource_name_dns_a_record_on_launch": false,
+        "enable_resource_name_dns_aaaa_record_on_launch": false,
+        "id": "subnet-040b5bc7eec665848",
+        "ipv6_cidr_block": "",
+        "ipv6_cidr_block_association_id": "",
+        "ipv6_native": false,
+        "map_customer_owned_ip_on_launch": false,
+        "map_public_ip_on_launch": true,
+        "outpost_arn": "",
+        "owner_id": "718170779365",
+        "private_dns_hostname_type_on_launch": "ip-name",
+        "region": "us-east-1",
+        "tags": {
+          "Name": "us-east-1a_public_subnet",
+          "Terraform": "true"
+        },
+        "tags_all": {
+          "Name": "us-east-1a_public_subnet",
+          "Owner": "Ahmed Tarek Alhusainy",
+          "Project": "aws-multitier-highly-aviable",
+          "Terraform": "true"
+        },
+        "timeouts": null,
+        "vpc_id": "vpc-0ab32120ae61c93a2"
+      },
+      "us-east-1b": {
+        "arn": "arn:aws:ec2:us-east-1:718170779365:subnet/subnet-028c218df239ecf74",
+        "assign_ipv6_address_on_creation": false,
+        "availability_zone": "us-east-1b",
+        "availability_zone_id": "use1-az2",
+        "cidr_block": "10.0.30.0/24",
+        "customer_owned_ipv4_pool": "",
+        "enable_dns64": false,
+        "enable_lni_at_device_index": 0,
+        "enable_resource_name_dns_a_record_on_launch": false,
+        "enable_resource_name_dns_aaaa_record_on_launch": false,
+        "id": "subnet-028c218df239ecf74",
+        "ipv6_cidr_block": "",
+        "ipv6_cidr_block_association_id": "",
+        "ipv6_native": false,
+        "map_customer_owned_ip_on_launch": false,
+        "map_public_ip_on_launch": true,
+        "outpost_arn": "",
+        "owner_id": "718170779365",
+        "private_dns_hostname_type_on_launch": "ip-name",
+        "region": "us-east-1",
+        "tags": {
+          "Name": "us-east-1b_public_subnet",
+          "Terraform": "true"
+        },
+        "tags_all": {
+          "Name": "us-east-1b_public_subnet",
+          "Owner": "Ahmed Tarek Alhusainy",
+          "Project": "aws-multitier-highly-aviable",
+          "Terraform": "true"
+        },
+        "timeouts": null,
+        "vpc_id": "vpc-0ab32120ae61c93a2"
+      },
+      "us-east-1c": {
+        "arn": "arn:aws:ec2:us-east-1:718170779365:subnet/subnet-09a6e064ba84956b7",
+        "assign_ipv6_address_on_creation": false,
+        "availability_zone": "us-east-1c",
+        "availability_zone_id": "use1-az4",
+        "cidr_block": "10.0.40.0/24",
+        "customer_owned_ipv4_pool": "",
+        "enable_dns64": false,
+        "enable_lni_at_device_index": 0,
+        "enable_resource_name_dns_a_record_on_launch": false,
+        "enable_resource_name_dns_aaaa_record_on_launch": false,
+        "id": "subnet-09a6e064ba84956b7",
+        "ipv6_cidr_block": "",
+        "ipv6_cidr_block_association_id": "",
+        "ipv6_native": false,
+        "map_customer_owned_ip_on_launch": false,
+        "map_public_ip_on_launch": true,
+        "outpost_arn": "",
+        "owner_id": "718170779365",
+        "private_dns_hostname_type_on_launch": "ip-name",
+        "region": "us-east-1",
+        "tags": {
+          "Name": "us-east-1c_public_subnet",
+          "Terraform": "true"
+        },
+        "tags_all": {
+          "Name": "us-east-1c_public_subnet",
+          "Owner": "Ahmed Tarek Alhusainy",
+          "Project": "aws-multitier-highly-aviable",
+          "Terraform": "true"
+        },
+        "timeouts": null,
+        "vpc_id": "vpc-0ab32120ae61c93a2"
+      }
+    }
+  },
+  "vpc_arn": {
+    "sensitive": false,
+    "type": "string",
+    "value": "arn:aws:ec2:us-east-1:718170779365:vpc/vpc-0ab32120ae61c93a2"
+  },
+  "vpc_id": {
+    "sensitive": false,
+    "type": "string",
+    "value": "vpc-0ab32120ae61c93a2"
+  },
+  "vpc_name": {
+    "sensitive": false,
+    "type": "string",
+    "value": " DEPI - Graduation - Project"
+  },
+  "websg_arn": {
+    "sensitive": false,
+    "type": "string",
+    "value": "sg-04d718b3bd5312fb0"
+  },
+  "websg_egress_rules": {
+    "sensitive": false,
+    "type": [
+      "set",
+      [
+        "object",
+        {
+          "cidr_blocks": [
+            "list",
+            "string"
+          ],
+          "description": "string",
+          "from_port": "number",
+          "ipv6_cidr_blocks": [
+            "list",
+            "string"
+          ],
+          "prefix_list_ids": [
+            "list",
+            "string"
+          ],
+          "protocol": "string",
+          "security_groups": [
+            "set",
+            "string"
+          ],
+          "self": "bool",
+          "to_port": "number"
+        }
+      ]
+    ],
+    "value": [
+      {
+        "cidr_blocks": [
+          "0.0.0.0/0"
+        ],
+        "description": "",
+        "from_port": 0,
+        "ipv6_cidr_blocks": [],
+        "prefix_list_ids": [],
+        "protocol": "-1",
+        "security_groups": [],
+        "self": false,
+        "to_port": 0
+      }
+    ]
+  },
+  "websg_id": {
+    "sensitive": false,
+    "type": "string",
+    "value": "sg-04d718b3bd5312fb0"
+  },
+  "websg_ingress_rules": {
+    "sensitive": false,
+    "type": [
+      "set",
+      [
+        "object",
+        {
+          "cidr_blocks": [
+            "list",
+            "string"
+          ],
+          "description": "string",
+          "from_port": "number",
+          "ipv6_cidr_blocks": [
+            "list",
+            "string"
+          ],
+          "prefix_list_ids": [
+            "list",
+            "string"
+          ],
+          "protocol": "string",
+          "security_groups": [
+            "set",
+            "string"
+          ],
+          "self": "bool",
+          "to_port": "number"
+        }
+      ]
+    ],
+    "value": [
+      {
+        "cidr_blocks": [
+          "0.0.0.0/0"
+        ],
+        "description": "",
+        "from_port": 0,
+        "ipv6_cidr_blocks": [],
+        "prefix_list_ids": [],
+        "protocol": "-1",
+        "security_groups": [],
+        "self": false,
+        "to_port": 0
+      }
+    ]
+  },
+  "websg_name": {
+    "sensitive": false,
+    "type": "string",
+    "value": "WebSG"
+  },
+  "websg_vpc_id": {
+    "sensitive": false,
+    "type": "string",
+    "value": "vpc-0ab32120ae61c93a2"
+  }
+}

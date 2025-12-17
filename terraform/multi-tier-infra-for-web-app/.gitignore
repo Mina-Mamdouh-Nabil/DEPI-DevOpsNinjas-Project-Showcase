@@ -1,0 +1,11 @@
+# Terraform state
+terraform.tfstate
+terraform.tfstate.backup
+
+# Terraform lock and cache
+.terraform.lock.hcl
+.terraform/
+
+# Provider configs
+/providers/aws
+/providers/azure
