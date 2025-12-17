@@ -31,7 +31,7 @@ jobs:
       # 4) Build images via docker-compose
       - name: Build images with Docker Compose
         run: |
-          docker-compose build
+          docker compose build
 
       # 5) Tag & push images
       #    Adjust service names / image names according to your compose file
