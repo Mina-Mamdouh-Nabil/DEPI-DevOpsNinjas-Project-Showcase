@@ -37,10 +37,10 @@ jobs:
       #    Adjust service names / image names according to your compose file
       - name: Push backend image
         run: |
-          docker tag shopinow-backend:latest ${{ secrets.DOCKERHUB_USERNAME }}/shopinow-backend:latest
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/shopinow-backend:latest
+          docker tag depi-devopsninjas-project-showcase-backend:latest ${{ secrets.DOCKERHUB_USERNAME }}/depi-devopsninjas-project-showcase-backend:latest
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/depi-devopsninjas-project-showcase-backend:latest
 
       - name: Push frontend image
         run: |
-          docker tag shopinow-frontend:latest ${{ secrets.DOCKERHUB_USERNAME }}/shopinow-frontend:latest
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/shopinow-frontend:latest
+          docker tag depi-devopsninjas-project-showcase-frontend:latest ${{ secrets.DOCKERHUB_USERNAME }}/depi-devopsninjas-project-showcase-frontend:latest
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/depi-devopsninjas-project-showcase-frontend:latest
